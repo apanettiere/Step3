@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Jobs</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="users.html">Users</a></li>
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="employers.html">Employers</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </nav>
+    <h1>Jobs</h1>
+
+    <h2>Add New Job</h2>
+    <form action="/add_job" method="post">
+      <label for="job_title">Job Title:</label>
+      <input type="text" id="job_title" name="job_title" required /><br />
+
+      <label for="employer_id">Employer ID:</label>
+      <input type="text" id="employer_id" name="employer_id" required /><br />
+
+      <label for="salary">Salary:</label>
+      <input type="text" id="salary" name="salary" /><br />
+
+      <label for="insurance">Insurance:</label>
+      <input type="text" id="insurance" name="insurance" /><br />
+
+      <label for="job_type">Job Type:</label>
+      <input type="text" id="job_type" name="job_type" /><br />
+
+      <label for="qualifications">Qualifications:</label>
+      <input type="text" id="qualifications" name="qualifications" /><br />
+
+      <button type="submit">Add Job</button>
+    </form>
+  </body>
+</html>

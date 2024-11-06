@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manage Applications</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="users.html">Users</a></li>
+        <li><a href="jobs.html">Jobs</a></li>
+        <li><a href="employers.html">Employers</a></li>
+        <li><a href="applications.html">Applications</a></li>
+      </ul>
+    </nav>
+    <h1>Applications</h1>
+
+    <h2>Add New Application</h2>
+    <form action="/add_application" method="post">
+      <label for="date_submitted">Date Submitted:</label>
+      <input
+        type="text"
+        id="date_submitted"
+        name="date_submitted"
+        required
+      /><br />
+
+      <label for="user_id">User ID:</label>
+      <input type="text" id="user_id" name="user_id" required /><br />
+
+      <label for="job_id">Job ID:</label>
+      <input type="text" id="job_id" name="job_id" required /><br />
+
+      <label for="interview">Interview:</label>
+      <input type="checkbox" id="interview" name="interview" /><br />
+
+      <label for="interview_date">Interview Date:</label>
+      <input type="date" id="interview_date" name="interview_date" /><br />
+
+      <label for="interview_status">Interview Status:</label>
+      <input type="text" id="interview_status" name="interview_status" /><br />
+
+      <label for="application_status">Application Status:</label>
+      <input
+        type="text"
+        id="application_status"
+        name="application_status"
+        required
+      /><br />
+
+      <button type="submit">Add Application</button>
+    </form>
+  </body>
+</html>
