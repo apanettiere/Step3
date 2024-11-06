@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Manage Jobs</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <nav>
@@ -13,29 +14,89 @@
         <li><a href="applications.html">Applications</a></li>
       </ul>
     </nav>
-    <h1>Jobs</h1>
 
-    <h2>Add New Job</h2>
-    <form action="/add_job" method="post">
-      <label for="job_title">Job Title:</label>
-      <input type="text" id="job_title" name="job_title" required /><br />
+    <h1>Manage Jobs</h1>
 
-      <label for="employer_id">Employer ID:</label>
-      <input type="text" id="employer_id" name="employer_id" required /><br />
+    <div>
+      <h2>Existing Jobs</h2>
+      <table border="1">
+        <tr>
+          <th>Edit</th>
+          <th>Delete</th>
+          <th>Job ID</th>
+          <th>Job Title</th>
+          <th>Employer</th>
+          <th>Salary</th>
+          <th>Insurance</th>
+          <th>Job Type</th>
+          <th>Qualifications</th>
+        </tr>
+      </table>
+    </div>
 
-      <label for="salary">Salary:</label>
-      <input type="text" id="salary" name="salary" /><br />
+    <div>
+      <h2>Add New Job</h2>
+      <form>
+        <label for="job_title">Job Title:</label>
+        <input type="text" id="job_title" name="job_title" required /><br />
 
-      <label for="insurance">Insurance:</label>
-      <input type="text" id="insurance" name="insurance" /><br />
+        <label for="employer_id">Employer:</label>
+        <select id="employer_id" name="employer_id" required>
+          <option value="">Select Employer</option></select
+        ><br />
 
-      <label for="job_type">Job Type:</label>
-      <input type="text" id="job_type" name="job_type" /><br />
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" name="salary" required /><br />
 
-      <label for="qualifications">Qualifications:</label>
-      <input type="text" id="qualifications" name="qualifications" /><br />
+        <label for="insurance">Insurance:</label>
+        <input type="text" id="insurance" name="insurance" /><br />
 
-      <button type="submit">Add Job</button>
-    </form>
+        <label for="job_type">Job Type:</label>
+        <input type="text" id="job_type" name="job_type" required /><br />
+
+        <label for="qualifications">Qualifications:</label>
+        <textarea id="qualifications" name="qualifications"></textarea><br />
+
+        <button type="submit">Add Job</button>
+      </form>
+    </div>
+
+    <div>
+      <h2>Update Job</h2>
+      <form>
+        <input type="hidden" name="job_id" />
+
+        <label for="job_title">Job Title:</label>
+        <input type="text" id="job_title" name="job_title" required /><br />
+
+        <label for="employer_id">Employer:</label>
+        <select id="employer_id" name="employer_id" required>
+          <option value="">Select Employer</option></select
+        ><br />
+
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" name="salary" required /><br />
+
+        <label for="insurance">Insurance:</label>
+        <input type="text" id="insurance" name="insurance" /><br />
+
+        <label for="job_type">Job Type:</label>
+        <input type="text" id="job_type" name="job_type" required /><br />
+
+        <label for="qualifications">Qualifications:</label>
+        <textarea id="qualifications" name="qualifications"></textarea><br />
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+
+    <div>
+      <h2>Delete Job</h2>
+      <form>
+        <p>Are you sure you want to delete this job?</p>
+        <input type="hidden" name="job_id" />
+        <button type="submit">Confirm Delete</button>
+      </form>
+    </div>
   </body>
 </html>
