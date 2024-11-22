@@ -31,6 +31,12 @@ INSERT INTO Applications (date_submitted, user_id, job_id, interview, interview_
 VALUES 
 (:date_submitted_input, :user_id_input, :job_id_input, :interview_input, :interview_date_input, :interview_status_input, :application_status_input);
 
+--select statement of user names for dropdown
+SELECT CONCAT(first_name, " ", last_name) FROM Users;
+
+--select statement of job titles for dropdown
+SELECT job_title FROM Jobs;
+
 --get all Application information for the browse Applications page
 SELECT * FROM Applications;
 
@@ -58,7 +64,10 @@ WHERE application_id = :application_id_delete;
 --create a new Job
 INSERT INTO Jobs (job_title, employer_id, salary, insurance, job_type, qualifications) 
 VALUES
-(:job_title_input, :employer_id_input, :salary_input, :insurance_input, :job_type_input, :qualifications_input);
+(:job_title_input, :employer_id_input, :salary_input, :insurance_input, :job_type_input, :qualifications_input, :status_input);
+
+--select statement of employer names for dropdown
+SELECT employer_name FROM employers;
 
 --get all Job information for the browse Jobs page
 SELECT * FROM Jobs;
@@ -75,6 +84,7 @@ salary = :salary_input,
 insurance = :insurance_input,
 job_type = :job_type_input,
 qualifications = :qualifications_input
+status = :status_input
 WHERE job_id = :job_id_update;
 
 --delete a Job 
@@ -105,3 +115,4 @@ WHERE employer_id = :employer_id_update;
 --delete an Employer
 DELETE FROM Employers
 WHERE employer_id = :employer_id_delete;
+

@@ -3,6 +3,7 @@
   <head>
     <title>Manage Applications</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="applications.js"></script>
   </head>
   <body>
     <nav>
@@ -78,41 +79,45 @@
 
     <div>
       <h2>Update Application</h2>
-      <form>
-        <input type="hidden" name="application_id" />
+      <form id="update-application-form">
+        <input type="hidden" id="update-application-id" name="application_id" />
 
-        <label for="date_submitted">Date Submitted:</label>
+        <label for="update-date-submitted">Date Submitted:</label>
         <input
           type="date"
-          id="date_submitted"
-          name="date_submitted"
+          id="update-date-submitted"
+          name="dateSubmitted"
           required
         /><br />
 
-        <label for="user_id">User:</label>
-        <select id="user_id" name="user_id" required>
+        <label for="update-user-id">User:</label>
+        <select id="update-user-id" name="userId" required>
           <option value="">Select User</option></select
         ><br />
 
-        <label for="job_id">Job:</label>
-        <select id="job_id" name="job_id" required>
+        <label for="update-job-id">Job:</label>
+        <select id="update-job-id" name="jobId" required>
           <option value="">Select Job</option></select
         ><br />
 
-        <label for="interview">Interview (optional):</label>
-        <select id="interview" name="interview">
+        <label for="update-interview">Interview:</label>
+        <select id="update-interview" name="interview">
           <option value="">No</option>
           <option value="1">Yes</option></select
         ><br />
 
-        <label for="interview_date">Interview Date:</label>
-        <input type="date" id="interview_date" name="interview_date" /><br />
+        <label for="update-interview-date">Interview Date:</label>
+        <input
+          type="date"
+          id="update-interview-date"
+          name="interviewDate"
+        /><br />
 
-        <label for="application_status">Status:</label>
+        <label for="update-application-status">Status:</label>
         <input
           type="text"
-          id="application_status"
-          name="application_status"
+          id="update-application-status"
+          name="status"
           required
         /><br />
 

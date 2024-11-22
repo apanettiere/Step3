@@ -1,0 +1,16 @@
+{
+  "name": "activity2",
+  "version": "1.0.0",
+  "description": "cs340 activity 2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Panettiere",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "forever": "^4.0.3",
+    "mysql": "^2.18.1"
+  }
+}
