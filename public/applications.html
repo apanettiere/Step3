@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manage Applications</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
-    <script src="applications.js"></script>
+    <script defer src="applications.js"></script>
   </head>
   <body>
     <nav>
@@ -21,54 +23,61 @@
     <div>
       <h2>Existing Applications</h2>
       <table border="1">
-        <tr>
-          <th>Edit</th>
-          <th>Delete</th>
-          <th>Application ID</th>
-          <th>Date Submitted</th>
-          <th>User</th>
-          <th>Job</th>
-          <th>Interview</th>
-          <th>Interview Date</th>
-          <th>Status</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Application ID</th>
+            <th>Date Submitted</th>
+            <th>User</th>
+            <th>Job</th>
+            <th>Interview</th>
+            <th>Interview Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="applications-table-body"></tbody>
       </table>
     </div>
 
     <div>
       <h2>Add New Application</h2>
-      <form>
-        <label for="date_submitted">Date Submitted:</label>
+      <form id="add-application-form">
+        <label for="add-date-submitted">Date Submitted:</label>
         <input
           type="date"
-          id="date_submitted"
+          id="add-date-submitted"
           name="date_submitted"
           required
         /><br />
 
-        <label for="user_id">User:</label>
-        <select id="user_id" name="user_id" required>
+        <label for="add-user-id">User:</label>
+        <select id="add-user-id" name="user_id" required>
           <option value="">Select User</option></select
         ><br />
 
-        <label for="job_id">Job:</label>
-        <select id="job_id" name="job_id" required>
+        <label for="add-job-id">Job:</label>
+        <select id="add-job-id" name="job_id" required>
           <option value="">Select Job</option></select
         ><br />
 
-        <label for="interview">Interview (optional):</label>
-        <select id="interview" name="interview">
-          <option value="">No</option>
+        <label for="add-interview">Interview (optional):</label>
+        <select id="add-interview" name="interview">
+          <option value="0">No</option>
           <option value="1">Yes</option></select
         ><br />
 
-        <label for="interview_date">Interview Date:</label>
-        <input type="date" id="interview_date" name="interview_date" /><br />
+        <label for="add-interview-date">Interview Date:</label>
+        <input
+          type="date"
+          id="add-interview-date"
+          name="interview_date"
+        /><br />
 
-        <label for="application_status">Status:</label>
+        <label for="add-application-status">Status:</label>
         <input
           type="text"
-          id="application_status"
+          id="add-application-status"
           name="application_status"
           required
         /><br />
@@ -77,7 +86,7 @@
       </form>
     </div>
 
-    <div>
+    <div id="update-application-section" style="display: none">
       <h2>Update Application</h2>
       <form id="update-application-form">
         <input type="hidden" id="update-application-id" name="application_id" />
@@ -86,23 +95,23 @@
         <input
           type="date"
           id="update-date-submitted"
-          name="dateSubmitted"
+          name="date_submitted"
           required
         /><br />
 
         <label for="update-user-id">User:</label>
-        <select id="update-user-id" name="userId" required>
+        <select id="update-user-id" name="user_id" required>
           <option value="">Select User</option></select
         ><br />
 
         <label for="update-job-id">Job:</label>
-        <select id="update-job-id" name="jobId" required>
+        <select id="update-job-id" name="job_id" required>
           <option value="">Select Job</option></select
         ><br />
 
         <label for="update-interview">Interview:</label>
         <select id="update-interview" name="interview">
-          <option value="">No</option>
+          <option value="0">No</option>
           <option value="1">Yes</option></select
         ><br />
 
@@ -110,14 +119,14 @@
         <input
           type="date"
           id="update-interview-date"
-          name="interviewDate"
+          name="interview_date"
         /><br />
 
         <label for="update-application-status">Status:</label>
         <input
           type="text"
           id="update-application-status"
-          name="status"
+          name="application_status"
           required
         /><br />
 
@@ -125,11 +134,11 @@
       </form>
     </div>
 
-    <div>
+    <div id="delete-application-section" style="display: none">
       <h2>Delete Application</h2>
-      <form>
+      <form id="delete-application-form">
         <p>Are you sure you want to delete this application?</p>
-        <input type="hidden" name="application_id" />
+        <input type="hidden" id="delete-application-id" name="application_id" />
         <button type="submit">Confirm Delete</button>
       </form>
     </div>

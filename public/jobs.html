@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manage Jobs</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
@@ -20,89 +22,97 @@
     <div>
       <h2>Existing Jobs</h2>
       <table border="1">
-        <tr>
-          <th>Edit</th>
-          <th>Delete</th>
-          <th>Job ID</th>
-          <th>Job Title</th>
-          <th>Employer</th>
-          <th>Salary</th>
-          <th>Insurance</th>
-          <th>Job Type</th>
-          <th>Qualifications</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>Job ID</th>
+            <th>Job Title</th>
+            <th>Employer</th>
+            <th>Salary</th>
+            <th>Insurance</th>
+            <th>Job Type</th>
+            <th>Qualifications</th>
+          </tr>
+        </thead>
+        <tbody id="jobs-table-body"></tbody>
       </table>
     </div>
 
     <div>
       <h2>Add New Job</h2>
-      <form>
-        <label for="job_title">Job Title:</label>
-        <input type="text" id="job_title" name="job_title" required /><br />
+      <form id="add-job-form">
+        <label for="add-job-title">Job Title:</label>
+        <input type="text" id="add-job-title" name="job_title" required /><br />
 
-        <label for="employer_id">Employer:</label>
-        <select id="employer_id" name="employer_id" required>
+        <label for="add-employer-id">Employer:</label>
+        <select id="add-employer-id" name="employer_id" required>
           <option value="">Select Employer</option></select
         ><br />
 
-        <label for="salary">Salary:</label>
-        <input type="number" id="salary" name="salary" required /><br />
+        <label for="add-salary">Salary:</label>
+        <input type="number" id="add-salary" name="salary" required /><br />
 
-        <label for="insurance">Insurance:</label>
-        <input type="text" id="insurance" name="insurance" /><br />
+        <label for="add-insurance">Insurance:</label>
+        <input type="text" id="add-insurance" name="insurance" /><br />
 
-        <label for="job_type">Job Type:</label>
-        <input type="text" id="job_type" name="job_type" required /><br />
+        <label for="add-job-type">Job Type:</label>
+        <input type="text" id="add-job-type" name="job_type" required /><br />
 
-        <label for="qualifications">Qualifications:</label>
-        <textarea id="qualifications" name="qualifications"></textarea><br />
-        
-        <label for="status">Status:</label> 
-        <input type="text" id="status" name="status" required /><br />
+        <label for="add-qualifications">Qualifications:</label>
+        <textarea id="add-qualifications" name="qualifications"></textarea
+        ><br />
+
+        <label for="add-status">Status:</label>
+        <input type="text" id="add-status" name="status" required /><br />
 
         <button type="submit">Add Job</button>
       </form>
     </div>
 
-    <div>
+    <div id="update-job-section" style="display: none">
       <h2>Update Job</h2>
-      <form>
-        <input type="hidden" name="job_id" />
+      <form id="update-job-form">
+        <input type="hidden" id="update-job-id" name="job_id" />
 
-        <label for="job_title">Job Title:</label>
-        <input type="text" id="job_title" name="job_title" required /><br />
+        <label for="update-job-title">Job Title:</label>
+        <input
+          type="text"
+          id="update-job-title"
+          name="job_title"
+          required
+        /><br />
 
-        <label for="employer_id">Employer:</label>
-        <select id="employer_id" name="employer_id" required>
+        <label for="update-employer-id">Employer:</label>
+        <select id="update-employer-id" name="employer_id" required>
           <option value="">Select Employer</option></select
         ><br />
 
-        <label for="salary">Salary:</label>
-        <input type="number" id="salary" name="salary" required /><br />
+        <label for="update-salary">Salary:</label>
+        <input type="number" id="update-salary" name="salary" required /><br />
 
-        <label for="insurance">Insurance:</label>
-        <input type="text" id="insurance" name="insurance" /><br />
+        <label for="update-insurance">Insurance:</label>
+        <input type="text" id="update-insurance" name="insurance" /><br />
 
-        <label for="job_type">Job Type:</label>
-        <input type="text" id="job_type" name="job_type" required /><br />
+        <label for="update-job-type">Job Type:</label>
+        <input
+          type="text"
+          id="update-job-type"
+          name="job_type"
+          required
+        /><br />
 
-        <label for="qualifications">Qualifications:</label>
-        <textarea id="qualifications" name="qualifications"></textarea><br />
+        <label for="update-qualifications">Qualifications:</label>
+        <textarea id="update-qualifications" name="qualifications"></textarea
+        ><br />
 
-        <label for="status">Status:</label> 
-        <input type="text" id="status" name="status" required /><br />
+        <label for="update-status">Status:</label>
+        <input type="text" id="update-status" name="status" required /><br />
 
         <button type="submit">Save Changes</button>
       </form>
     </div>
 
-    <div>
-      <h2>Delete Job</h2>
-      <form>
-        <p>Are you sure you want to delete this job?</p>
-        <input type="hidden" name="job_id" />
-        <button type="submit">Confirm Delete</button>
-      </form>
-    </div>
+    <script src="jobs.js"></script>
   </body>
 </html>
