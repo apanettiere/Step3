@@ -10,6 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "update-application-section"
   );
 
+  // Utility function to format dates to YYYY-MM-DD
+  const formatDate = (isoDate) => {
+    if (!isoDate) return "N/A";
+    const date = new Date(isoDate);
+    return date.toISOString().split("T")[0];
+  };
+
   // Fetch and populate users and jobs dropdowns
   const fetchUsersAndJobs = () => {
     fetch("/users")
@@ -19,12 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
           "#add-user-id, #update-user-id"
         );
         userDropdowns.forEach((dropdown) => {
-          dropdown.innerHTML = users
-            .map(
-              (user) =>
-                `<option value="${user.user_id}">${user.first_name} ${user.last_name}</option>`
-            )
-            .join("");
+          dropdown.innerHTML =
+            `<option value="">None</option>` + // Default option for nullable fields
+            users
+              .map(
+                (user) =>
+                  `<option value="${user.user_id}">${user.first_name} ${user.last_name}</option>`
+              )
+              .join("");
         });
       })
       .catch((err) => console.error("Error fetching users:", err));
@@ -36,11 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
           "#add-job-id, #update-job-id"
         );
         jobDropdowns.forEach((dropdown) => {
-          dropdown.innerHTML = jobs
-            .map(
-              (job) => `<option value="${job.job_id}">${job.job_title}</option>`
-            )
-            .join("");
+          dropdown.innerHTML =
+            `<option value="">None</option>` + // Default option for nullable fields
+            jobs
+              .map(
+                (job) =>
+                  `<option value="${job.job_id}">${job.job_title}</option>`
+              )
+              .join("");
         });
       })
       .catch((err) => console.error("Error fetching jobs:", err));
@@ -59,22 +71,22 @@ document.addEventListener("DOMContentLoaded", () => {
         applicationsTableBody.innerHTML = applications
           .map(
             (application) => `
-          <tr>
-            <td><button class="edit-btn" data-id="${
-              application.application_id
-            }">Edit</button></td>
-            <td><button class="delete-btn" data-id="${
-              application.application_id
-            }">Delete</button></td>
-            <td>${application.application_id}</td>
-            <td>${application.date_submitted}</td>
-            <td>${application.user_name}</td>
-            <td>${application.job_title}</td>
-            <td>${application.interview ? "Yes" : "No"}</td>
-            <td>${application.interview_date || "N/A"}</td>
-            <td>${application.application_status}</td>
-          </tr>
-        `
+            <tr>
+              <td><button class="edit-btn" data-id="${
+                application.application_id
+              }">Edit</button></td>
+              <td><button class="delete-btn" data-id="${
+                application.application_id
+              }">Delete</button></td>
+              <td>${application.application_id}</td>
+              <td>${formatDate(application.date_submitted)}</td>
+              <td>${application.user_name || "None"}</td>
+              <td>${application.job_title || "None"}</td>
+              <td>${application.interview ? "Yes" : "No"}</td>
+              <td>${formatDate(application.interview_date)}</td>
+              <td>${application.application_status}</td>
+            </tr>
+          `
           )
           .join("");
       })
@@ -119,15 +131,17 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((application) => {
           updateApplicationForm["application_id"].value =
             application.application_id;
-          updateApplicationForm["date_submitted"].value =
-            application.date_submitted;
-          updateApplicationForm["user_id"].value = application.user_id;
-          updateApplicationForm["job_id"].value = application.job_id;
+          updateApplicationForm["date_submitted"].value = formatDate(
+            application.date_submitted
+          );
+          updateApplicationForm["user_id"].value = application.user_id || ""; // Default to empty
+          updateApplicationForm["job_id"].value = application.job_id || ""; // Default to empty
           updateApplicationForm["interview"].value = application.interview
             ? "1"
             : "0";
-          updateApplicationForm["interview_date"].value =
-            application.interview_date || "";
+          updateApplicationForm["interview_date"].value = formatDate(
+            application.interview_date
+          );
           updateApplicationForm["application_status"].value =
             application.application_status;
 

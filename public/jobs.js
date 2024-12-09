@@ -18,15 +18,20 @@ document.addEventListener("DOMContentLoaded", () => {
           .map(
             (job) => `
           <tr>
-            <td><button class="edit-btn" data-id="${job.job_id}">Edit</button></td>
-            <td><button class="delete-btn" data-id="${job.job_id}">Delete</button></td>
+            <td><button class="edit-btn" data-id="${
+              job.job_id
+            }">Edit</button></td>
+            <td><button class="delete-btn" data-id="${
+              job.job_id
+            }">Delete</button></td>
             <td>${job.job_id}</td>
             <td>${job.job_title}</td>
-            <td>${job.employer_name}</td>
+            <td>${job.employer_name || "N/A"}</td>
             <td>${job.salary}</td>
             <td>${job.insurance}</td>
             <td>${job.job_type}</td>
             <td>${job.qualifications}</td>
+            <td>${job.status}</td>
           </tr>
         `
           )
@@ -35,25 +40,26 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((err) => console.error("Error fetching jobs:", err));
   };
 
-  // Fetch employers for the dropdown
-  const fetchEmployers = (dropdownId) => {
-    fetch("/employers")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch employers");
-        }
-        return response.json();
-      })
-      .then((employers) => {
-        const dropdown = document.getElementById(dropdownId);
-        dropdown.innerHTML = employers
+  // Fetch employers for dropdown
+  const fetchEmployers = async (dropdownId) => {
+    try {
+      const response = await fetch("/employers");
+      if (!response.ok) {
+        throw new Error("Failed to fetch employers");
+      }
+      const employers = await response.json();
+      const dropdown = document.getElementById(dropdownId);
+      dropdown.innerHTML =
+        `<option value="">Select Employer</option>` +
+        employers
           .map(
             (employer) =>
               `<option value="${employer.employer_id}">${employer.employer_name}</option>`
           )
           .join("");
-      })
-      .catch((err) => console.error("Error fetching employers:", err));
+    } catch (err) {
+      console.error("Error fetching employers:", err);
+    }
   };
 
   // Fetch jobs and employers on page load
@@ -89,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target.classList.contains("edit-btn")) {
       const jobId = event.target.dataset.id;
 
+      // Fetch job details
       fetch(`/jobs/${jobId}`)
         .then((response) => {
           if (!response.ok) {
@@ -97,15 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
           return response.json();
         })
         .then((job) => {
+          // Populate form fields
           updateJobForm["job_id"].value = job.job_id;
           updateJobForm["job_title"].value = job.job_title;
-          updateJobForm["employer_id"].value = job.employer_id;
           updateJobForm["salary"].value = job.salary;
           updateJobForm["insurance"].value = job.insurance;
           updateJobForm["job_type"].value = job.job_type;
           updateJobForm["qualifications"].value = job.qualifications;
           updateJobForm["status"].value = job.status;
 
+          // Populate and set the employer dropdown
+          fetchEmployers("update-employer-id").then(() => {
+            updateJobForm["employer_id"].value = job.employer_id || "";
+          });
+
+          // Show update section
           updateJobSection.style.display = "block";
         })
         .catch((err) => console.error("Error fetching job details:", err));

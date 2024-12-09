@@ -13,14 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
           .map(
             (emp) => `
             <tr>
+              <td>
+                <button class="edit-btn" data-id="${emp.employer_id}" data-name="${emp.employer_name}" data-email="${emp.email}" data-phone="${emp.phone}">Edit</button>
+              </td>
+              <td>
+                <button class="delete-btn" data-id="${emp.employer_id}">Delete</button>
+              </td>
               <td>${emp.employer_id}</td>
               <td>${emp.employer_name}</td>
               <td>${emp.email}</td>
               <td>${emp.phone}</td>
-              <td>
-                <button class="edit-btn" data-id="${emp.employer_id}" data-name="${emp.employer_name}" data-email="${emp.email}" data-phone="${emp.phone}">Edit</button>
-                <button class="delete-btn" data-id="${emp.employer_id}">Delete</button>
-              </td>
             </tr>`
           )
           .join("");
